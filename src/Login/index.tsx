@@ -28,6 +28,9 @@ const Login = () => {
 
   const handleSignUp = (evt: any) => {
     evt.preventDefault();
+
+    console.log(signUpData);
+
     fetch('https://serene-lake-44389.herokuapp.com/api/v1/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
