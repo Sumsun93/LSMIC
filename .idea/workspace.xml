@@ -2,20 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Fix fix fix">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Dashboard/Missions.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" afterPath="$PROJECT_DIR$/public/favicon.ico" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/User.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/User.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/UsersList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/UsersList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/AuthProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/SocketProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/SocketProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/UsersProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/UsersProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
