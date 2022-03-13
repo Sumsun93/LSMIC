@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Button, TextField } from '@mui/material';
 import { useAuth } from '../contexts/AuthProvider';
 import { useLocation, Navigate } from 'react-router-dom';
@@ -26,12 +26,16 @@ const Login = () => {
 
   const [signUpData, setSignUpData] = useState(defaultSignUpData);
 
+  useEffect(() => {
+    const tokenCookie = document.cookie.split(';').find((item) => item.trim().startsWith(`token=`))?.trim();
+    if (tokenCookie?.length) {
+      auth.signinToken(tokenCookie.replace('token=', ''));
+    }
+  }, []);
+
   const handleSignUp = (evt: any) => {
     evt.preventDefault();
-
-    console.log(signUpData);
-
-    fetch('https://serene-lake-44389.herokuapp.com/api/v1/auth/register', {
+    fetch(`${process.env.REACT_APP_SERVER_API}/api/v1/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

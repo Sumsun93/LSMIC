@@ -6,6 +6,7 @@ interface AuthContextType {
   changeIsAvailable: (state: boolean) => void;
   updateUser: (data: object) => void
   signout: () => void;
+  signinToken: (token: string) => void;
 }
 
 let AuthContext = createContext<AuthContextType>(null!);
@@ -14,7 +15,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<any>(null);
 
   const signin = (newUser: { username: string, password: string }) => {
-    fetch('https://serene-lake-44389.herokuapp.com/api/v1/auth/login', {
+    fetch(`${process.env.REACT_APP_SERVER_API}/api/v1/auth/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -22,12 +23,36 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         password: newUser.password,
       })
     })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((data) => {
+          document.cookie = `token=${data.token}`;
+          setUser(data);
+        });
+  };
+
+  const signinToken = (token: string) => {
+    fetch(`${process.env.REACT_APP_SERVER_API}/api/v1/auth/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        token,
       })
-      .then(setUser)
+    })
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          }
+        })
+        .then((data) => {
+          document.cookie = `token=${data.token}`;
+          setUser(data);
+        });
   };
 
   const changeIsAvailable = (state: boolean) => {
@@ -45,10 +70,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const signout = () => {
+    document.cookie = 'token=';
     setUser(null);
   };
 
-  let value = { user, signin, changeIsAvailable, updateUser, signout };
+  let value = { user, signin, signinToken, changeIsAvailable, updateUser, signout };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

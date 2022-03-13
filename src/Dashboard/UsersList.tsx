@@ -1,4 +1,5 @@
 import { Accordion, AccordionSummary, AccordionDetails, Chip, Typography, List, ListItem, ListItemText, ListItemAvatar, Avatar, Box, Badge, styled, TextField, InputAdornment, Dialog, DialogContent, DialogActions, Button } from '@mui/material';
+import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -83,7 +84,6 @@ const UserItem = ({ user, showPhone }: any) => {
     }
 
     const handleReset = () => {
-        console.log('TA MERE', user.note);
         setEditNote(user.note);
     }
 
@@ -96,53 +96,65 @@ const UserItem = ({ user, showPhone }: any) => {
         })
     }
 
-    return (
-        <>
-            <ListItem onClick={() => setOpen(true)}>
-                <ListItemAvatar>
-                    {user.isAvailable ? (
-                        <StyledActiveBadge
-                            overlap="circular"
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                            variant="dot"
-                        >
-                            <Avatar sx={{ width: 30, height: 30, bgcolor: 'text.primary' }}>{user.username[0]}</Avatar>
-                        </StyledActiveBadge>
-                    ) : (
-                        <StyledDeactiveBadge
-                            overlap="circular"
-                            anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-                            variant="dot"
-                        >
-                            <Avatar sx={{ width: 30, height: 30 }}>{user.username[0]}</Avatar>
-                        </StyledDeactiveBadge>
-                    )}
-                </ListItemAvatar>
-                <ListItemText
-                    primary={<Typography sx={{ display: 'inline', color: user.isAvailable ? 'text.primary' : 'text.disabled' }}>{user.username}</Typography>}
-                    sx={{ display: 'flex', justifyContent: 'space-between' }}
-                    secondary={
-                        (auth.user.isAdmin || showPhone) && (
-                            <React.Fragment>
+    const Item = (
+        <ListItem onClick={() => setOpen(true)}>
+            <ListItemAvatar>
+                {user.isAvailable ? (
+                    <StyledActiveBadge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                        variant="dot"
+                    >
+                        <Avatar sx={{ width: 30, height: 30, bgcolor: 'text.primary' }}>{user.username[0]}</Avatar>
+                    </StyledActiveBadge>
+                ) : (
+                    <StyledDeactiveBadge
+                        overlap="circular"
+                        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                        variant="dot"
+                    >
+                        <Avatar sx={{ width: 30, height: 30 }}>{user.username[0]}</Avatar>
+                    </StyledDeactiveBadge>
+                )}
+            </ListItemAvatar>
+            <ListItemText
+                primary={<Typography sx={{ display: 'inline', color: user.isAvailable ? 'text.primary' : 'text.disabled' }}>{user.username}</Typography>}
+                sx={{ display: 'flex', justifyContent: 'space-between' }}
+                secondary={
+                    (auth.user.isAdmin || showPhone) && (
+                        <React.Fragment>
+                            <Typography
+                                sx={{ display: 'inline' }}
+                                variant="body2"
+                            >
+                                <Chip onClick={handleCopy(user.phone)} sx={{ marginLeft: "5px", cursor: 'pointer' }} size={"small"} icon={<PhoneIcon />} label={user.phone} />
+                            </Typography>
+                            {auth.user.isAdmin && (
                                 <Typography
-                                    sx={{ display: 'inline' }}
                                     variant="body2"
+                                    sx={{ display: 'inline'}}
                                 >
-                                    <Chip onClick={handleCopy(user.phone)} sx={{ marginLeft: "5px", cursor: 'pointer' }} size={"small"} icon={<PhoneIcon />} label={user.phone} />
+                                    <Chip onClick={handleCopy(user.bank)} sx={{ marginLeft: "5px", cursor: 'pointer' }} size={"small"} icon={<CreditCardIcon />} label={user.bank} />
                                 </Typography>
-                                {auth.user.isAdmin && (
-                                    <Typography
-                                        variant="body2"
-                                        sx={{ display: 'inline'}}
-                                    >
-                                        <Chip onClick={handleCopy(user.bank)} sx={{ marginLeft: "5px", cursor: 'pointer' }} size={"small"} icon={<CreditCardIcon />} label={user.bank} />
-                                    </Typography>
-                                )}
-                            </React.Fragment>
-                        )
-                    }
-                />
-            </ListItem>
+                            )}
+                        </React.Fragment>
+                    )
+                }
+            />
+        </ListItem>
+    )
+
+    return (
+        <Box key={user._id}>
+            {user.note?.length ? (
+                <Tooltip title={user.note} arrow enterDelay={500}>
+                    {Item}
+                </Tooltip>
+            ): (
+                <>
+                    {Item}
+                </>
+            )}
             {auth.user.isAdmin && (
                 <Dialog
                     open={open}
@@ -209,7 +221,7 @@ const UserItem = ({ user, showPhone }: any) => {
                     </DialogActions>
                 </Dialog>
             )}
-        </>
+        </Box>
     )
 }
 
@@ -234,6 +246,11 @@ const UsersList = () => {
         if (!a.isAvailable && b.isAvailable) return 1;
         return 0;
     });
+
+    useEffect(() => {
+
+    }, []);
+
 
     return (
         <Box>
@@ -284,7 +301,7 @@ const UsersList = () => {
                     </Box>
                     <List sx={{ overflow: 'auto', height: '450px', boxSizing: 'border-box' }}>
                         {sortedUsers?.filter(user => !user.isAdmin && user.username.includes(searchIterim)).map((user) => (
-                            <UserItem user={user} />
+                            <UserItem user={user} key={user._id} />
                         ))}
                     </List>
                 </Box>

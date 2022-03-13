@@ -27,6 +27,11 @@ const Dashboard = () => {
           users.setNewUsers(allUsers);
         }
       })
+
+      socket.on('updateOtherUser', (data) => {
+        users.updateUser(data);
+      })
+
       socket.emit('getAllUsers');
     }
   }, [socket.socket]);

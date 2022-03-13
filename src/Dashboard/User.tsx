@@ -2,6 +2,7 @@ import { Box, Button, Typography, TextField, Avatar, Badge, styled } from '@mui/
 import React, { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '../contexts/AuthProvider';
 import { useSocket } from '../contexts/SocketProvider';
+import Missions from './Missions';
 
 const StyledActiveBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -56,7 +57,6 @@ const User = () => {
 
     useEffect(() => {
         socket.socket?.on('updateUser', (data) => {
-            console.log(data);
             user.updateUser({
                 ...data
             })
@@ -114,7 +114,7 @@ const User = () => {
                     <TextField sx={{ margin: '10px 0' }} label={"Pseudo"} value={username} onChange={(evt) => setUsername(evt.target.value)} />
                     <TextField sx={{ margin: '10px 0' }} label={"Numéro de téléphone"} value={phone} onChange={(evt) => setPhone(evt.target.value)} />
                     <TextField sx={{ margin: '10px 0' }} label={"Compte bancaire"} value={bank} onChange={(evt) => setBank(evt.target.value)} />
-                    <Button disabled={saveDisabled} onClick={handleSave}>Savegarder</Button>
+                    <Button disabled={saveDisabled} onClick={handleSave}>Sauvegarder</Button>
                     <Button disabled={saveDisabled} onClick={handleReset}>Reinitialiser</Button>
                 </Box>
                 <Box>
@@ -125,9 +125,7 @@ const User = () => {
                     )}
                 </Box>
             </Box>
-            <Box sx={{ width: "500px", height: "500px", bgcolor: 'background.default' }}>
-                <Typography variant={"h6"} sx={{ color: 'text.primary' }}>Missions</Typography>
-            </Box>
+            <Missions />
         </Box>
     )
 };
