@@ -28,7 +28,7 @@ const Login = () => {
 
   const handleSignUp = (evt: any) => {
     evt.preventDefault();
-    fetch('http://localhost:3010/api/v1/auth/register', {
+    fetch('https://serene-lake-44389.herokuapp.com/api/v1/auth/register', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

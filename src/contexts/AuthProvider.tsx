@@ -14,7 +14,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<any>(null);
 
   const signin = (newUser: { username: string, password: string }) => {
-    fetch('http://localhost:3010/api/v1/auth/login', {
+    fetch('https://serene-lake-44389.herokuapp.com/api/v1/auth/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

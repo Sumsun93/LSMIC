@@ -15,7 +15,7 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
   const [socket, setSocket] = useState<Socket>();
 
   let connect = (token: string) => {
-    setSocket(io('http://localhost:3010', { query: { token } }));
+    setSocket(io('https://serene-lake-44389.herokuapp.com', { query: { token } }));
   };
 
   let emit = (eventName: string, data = {}) => {
