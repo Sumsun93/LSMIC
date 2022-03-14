@@ -84,7 +84,7 @@ const Login = () => {
         <>
           <TextField
             required
-            label={"Pseudo"}
+            label={"Prénom Nom"}
             id={"username"}
             sx={{ margin: '10px 0' }}
             value={signInData.username}
@@ -104,7 +104,7 @@ const Login = () => {
         <>
           <TextField
             required
-            label={"Pseudo"}
+            label={"Prénom Nom"}
             id={"username"}
             sx={{ margin: '10px 0' }}
             value={signUpData.username}

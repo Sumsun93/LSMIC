@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Fix fix fix">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="gitignore .env">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/User.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/User.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/index.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +73,8 @@
       <workItem from="1647123163157" duration="2023000" />
       <workItem from="1647167664807" duration="2000" />
       <workItem from="1647174376277" duration="12587000" />
+      <workItem from="1647253307355" duration="130000" />
+      <workItem from="1647256413658" duration="77000" />
     </task>
     <task id="LOCAL-00001" summary="Change server url">
       <created>1647130887893</created>
@@ -86,7 +90,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647132878347</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="gitignore .env">
+      <created>1647204639880</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1647204639881</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +117,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Change server url" />
     <MESSAGE value="Fix fix fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix fix fix" />
+    <MESSAGE value="gitignore .env" />
+    <option name="LAST_COMMIT_MESSAGE" value="gitignore .env" />
   </component>
 </project>

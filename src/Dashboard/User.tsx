@@ -111,7 +111,7 @@ const User = () => {
                     </StyledDeactiveBadge>
                 )}
                 <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <TextField sx={{ margin: '10px 0' }} label={"Pseudo"} value={username} onChange={(evt) => setUsername(evt.target.value)} />
+                    <TextField sx={{ margin: '10px 0' }} label={"Prénom Nom"} value={username} onChange={(evt) => setUsername(evt.target.value)} />
                     <TextField sx={{ margin: '10px 0' }} label={"Numéro de téléphone"} value={phone} onChange={(evt) => setPhone(evt.target.value)} />
                     <TextField sx={{ margin: '10px 0' }} label={"Compte bancaire"} value={bank} onChange={(evt) => setBank(evt.target.value)} />
                     <Button disabled={saveDisabled} onClick={handleSave}>Sauvegarder</Button>
