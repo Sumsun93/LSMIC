@@ -247,17 +247,18 @@ const UsersList = () => {
         return 0;
     });
 
-    useEffect(() => {
-
-    }, []);
-
+    const adminUsers = sortedUsers?.filter(user => user.isAdmin && user.username.toLocaleLowerCase().includes(searchAdmin.toLocaleLowerCase())) || [];
+    const members = sortedUsers?.filter(user => !user.isAdmin && user.username.toLocaleLowerCase().includes(searchIterim.toLocaleLowerCase())) || [];
 
     return (
         <Box>
             <Box sx={{ width: "500px", marginBottom: '20px' }}>
                 <Box sx={{ height: "500px", bgcolor: 'background.default' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px', padding: '0 5px' }}>
-                        <Typography variant={"h6"} sx={{ color: 'text.primary' }}>Employés LSMIC</Typography>
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                            <Typography variant={"h6"} sx={{ color: 'text.primary' }}>Employés LSMIC</Typography>
+                            <Typography sx={{ color: 'text.secondary', marginLeft: '10px', fontSize: '.9em' }}>{adminUsers.filter(member => member.isAvailable).length}/{adminUsers.length}</Typography>
+                        </Box>
                         <TextField
                             size="small"
                             sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
@@ -274,7 +275,7 @@ const UsersList = () => {
                         />
                     </Box>
                     <List sx={{ overflow: 'auto', height: '450px', boxSizing: 'border-box' }}>
-                        {sortedUsers?.filter(user => user.isAdmin && user.username.includes(searchAdmin)).map((user) => (
+                        {adminUsers.map((user) => (
                             <UserItem showPhone user={user} />
                         ))}
                     </List>
@@ -283,7 +284,10 @@ const UsersList = () => {
             <Box sx={{ width: "500px" }}>
                 <Box sx={{ height: "500px", bgcolor: 'background.default' }}>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', height: '50px', padding: '0 5px' }}>
-                        <Typography variant={"h6"} sx={{ color: 'text.primary' }}>Intérimaires</Typography>
+                        <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                            <Typography variant={"h6"} sx={{ color: 'text.primary' }}>Intérimaires</Typography>
+                            <Typography sx={{ color: 'text.secondary', marginLeft: '10px', fontSize: '.9em' }}>{members.filter(member => member.isAvailable).length}/{members.length}</Typography>
+                        </Box>
                         <TextField
                             size="small"
                             sx={{ height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
@@ -300,7 +304,7 @@ const UsersList = () => {
                         />
                     </Box>
                     <List sx={{ overflow: 'auto', height: '450px', boxSizing: 'border-box' }}>
-                        {sortedUsers?.filter(user => !user.isAdmin && user.username.includes(searchIterim)).map((user) => (
+                        {members.map((user) => (
                             <UserItem user={user} key={user._id} />
                         ))}
                     </List>
