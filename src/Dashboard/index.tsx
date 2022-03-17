@@ -32,6 +32,10 @@ const Dashboard = () => {
         users.updateUser(data);
       })
 
+      socket.on('connectUser', (newUser) => {
+        users.addUser(newUser);
+      })
+
       socket.emit('getAllUsers');
     }
   }, [socket.socket]);

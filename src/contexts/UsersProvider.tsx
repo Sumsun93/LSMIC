@@ -5,17 +5,27 @@ import * as events from "events";
 interface UsersContextType {
   setNewUsers: (newUsers: any[]) => void,
   users?: any[],
+  addUser: (newUser: any) => void,
   updateUser: ({ userId, newData, deleted }: { userId: string, newData: object, deleted: true }) => void,
 }
 
 let UsersContext = createContext<UsersContextType>(null!);
 
 const UsersProvider = ({ children }: { children: ReactNode }) => {
-  const [users, setUsers] = useState<any[]>();
+  const [users, setUsers] = useState<any[]>([]);
 
   const setNewUsers = (newUsers: any[]) => {
     setUsers(newUsers);
+  };
 
+  const addUser = (newUser: any) => {
+    setUsers(prevUsers => {
+      const newUsers = prevUsers;
+      if (!prevUsers.find(usr => usr.id === newUser.id)) {
+        newUsers.push(newUser);
+      }
+      return newUsers
+    });
   };
 
   const updateUser = ({ userId, newData, deleted }: { userId: string, newData: object, deleted: boolean }) => {
@@ -35,7 +45,7 @@ const UsersProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  let value = { setNewUsers, users, updateUser };
+  let value = { setNewUsers, users, updateUser, addUser };
 
   return <UsersContext.Provider value={value}>{children}</UsersContext.Provider>;
 }
