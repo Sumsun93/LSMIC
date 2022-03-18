@@ -36,6 +36,10 @@ const Dashboard = () => {
         users.addUser(newUser);
       })
 
+      socket.on('disconnectUser', () => {
+        auth.signout();
+      })
+
       socket.emit('getAllUsers');
     }
   }, [socket.socket]);
