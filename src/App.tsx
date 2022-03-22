@@ -34,7 +34,7 @@ function App() {
                                     </RequireAuth>
                                 )} />
                             </Routes>
-                            <div style={{ color: 'grey', marginTop: '10px' }}>v1.0.1</div>
+                            <div style={{ color: 'grey', marginTop: '10px' }}>v1.1.0</div>
                         </Box>
                     </UsersProvider>
                 </SocketProvider>
