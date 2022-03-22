@@ -1,8 +1,22 @@
+/**
+ * Package import
+ */
 import React, { useState, useEffect } from 'react';
-import { Box, Button, TextField } from '@mui/material';
-import { useAuth } from '../contexts/AuthProvider';
 import { useLocation, Navigate } from 'react-router-dom';
+import { InputField, Button } from '@oclock/crumble';
 
+/**
+ * Local import
+ */
+import { useAuth } from '../contexts/AuthProvider';
+import logo from '../logo.png';
+
+// style
+import * as S from './style';
+
+/**
+ * Data
+ */
 const defaultSignInData = {
   username: '',
   password: '',
@@ -16,6 +30,9 @@ const defaultSignUpData = {
   phone: '',
 };
 
+/**
+ * Component
+ */
 const Login = () => {
   const auth = useAuth();
   const location = useLocation();
@@ -61,91 +78,62 @@ const Login = () => {
     auth.signin(signInData);
   }
 
-  const handleChange = (evt: any) => {
+  const handleChange = (id: string) => (evt: any) => {
     if (login) {
       setSignInData({
         ...signInData,
-        [evt.target.id]: evt.target.value,
+        [id]: evt.target.value,
       })
     }
     else {
       setSignUpData({
         ...signUpData,
-        [evt.target.id]: evt.target.value,
+        [id]: evt.target.value,
       });
     }
   }
 
   if (auth.user) return <Navigate to="/" state={{ from: location }} replace />;
 
-  return (
-    <Box component="form" sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }} onChange={handleChange} onSubmit={login ? handleSignIn : handleSignUp}>
-      {login ? (
-        <>
-          <TextField
-            required
-            label={"Prénom Nom"}
-            id={"username"}
-            sx={{ margin: '10px 0' }}
-            value={signInData.username}
-          />
-          <TextField
-            required
-            type={"password"}
-            id={"password"}
-            label={"Mot de passe"}
-            sx={{ margin: '10px 0' }}
-            value={signInData.password}
-          />
-          <Button variant={"contained"} color={"success"} type={"submit"}>Se connecter</Button>
-          <Button size={"small"} onClick={() => setLogin(false)}>Inscription</Button>
-        </>
-      ) : (
-        <>
-          <TextField
-            required
-            label={"Prénom Nom"}
-            id={"username"}
-            sx={{ margin: '10px 0' }}
-            value={signUpData.username}
-          />
-          <TextField
-            required
-            type={"password"}
-            id={"password"}
-            label={"Mot de passe"}
-            sx={{ margin: '10px 0' }}
-            value={signUpData.password}
-          />
-          <TextField
-            required
-            type={"password"}
-            id={"confirmPassword"}
-            label={"Confirmation du mot de passe"}
-            sx={{ margin: '10px 0' }}
-            value={signUpData.confirmPassword}
-          />
-          <TextField
-            required
-            label={"Numéro de compte bancaire"}
-            id={"bank"}
-            sx={{ margin: '10px 0' }}
-            value={signUpData.bank}
-          />
-          <TextField
-            required
-            label={"Numéro de téléphone"}
-            id={"phone"}
-            sx={{ margin: '10px 0' }}
-            value={signUpData.phone}
-          />
-          <Button variant={"contained"} color={"success"} type={"submit"}>S'inscrire</Button>
-          <Button size={"small"} onClick={() => setLogin(true)}>Connexion</Button>
-        </>
-      )}
-
-    </Box>
-  )
+  if (login) {
+    return (
+        <S.Container>
+          <S.Logo src={logo} />
+          <S.Form>
+            <S.Title>Connexion</S.Title>
+            <S.Inputs>
+              <InputField placeholder={"Martine Hawley"} label={"Prénom Nom"} type={"text"} onChange={handleChange('username')} value={signInData.username} />
+              <InputField placeholder={"**********"} label={"Mot de passe"} type={"password"} onChange={handleChange('password')} value={signInData.password} />
+            </S.Inputs>
+            <S.Buttons>
+              <Button onClick={handleSignIn}>Se connecter</Button>
+              <Button onClick={() => setLogin(false)} variant={"text"}>S'inscrire</Button>
+            </S.Buttons>
+          </S.Form>
+        </S.Container>
+    )
+  }
+  else {
+    return (
+        <S.Container>
+          <S.Logo src={logo} />
+          <S.Form>
+            <S.Title>Inscription</S.Title>
+            <S.Inputs>
+              <InputField placeholder={"Martine Hawley"} label={"Prénom Nom"} type={"text"} onChange={handleChange('username')} value={signUpData.username} />
+              <InputField placeholder={"**********"} label={"Mot de passe"} type={"password"} onChange={handleChange('password')} value={signUpData.password} />
+              <InputField placeholder={"**********"} label={"Confirmation du mot de passe"} type={"password"} onChange={handleChange('confirmPassword')} value={signUpData.confirmPassword} />
+              <InputField placeholder={"XXX-XXXXXX-XX"} label={"Numéro de compte bancaire"} type={"text"} onChange={handleChange('bank')} value={signUpData.bank} />
+              <InputField placeholder={"555-XXXXXX"} label={"Numéro de téléphone"} type={"text"} onChange={handleChange('phone')} value={signUpData.phone} />
+            </S.Inputs>
+            <S.Buttons>
+              <Button onClick={handleSignUp}>S'inscrire</Button>
+              <Button onClick={() => setLogin(true)} variant={"text"}>Se connecter</Button>
+            </S.Buttons>
+          </S.Form>
+        </S.Container>
+    )
+  }
 }
 
 export default Login;

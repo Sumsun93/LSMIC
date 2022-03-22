@@ -1,11 +1,27 @@
+/**
+ * Package import
+ */
 import React, { useEffect, useState } from 'react';
+import {Box, Button } from '@mui/material';
+import { Menu } from '@oclock/crumble';
+
+/**
+ * Local import
+ */
 import { useAuth } from '../contexts/AuthProvider';
 import { useSocket } from '../contexts/SocketProvider';
 import { useUsers } from '../contexts/UsersProvider';
-import {Box, Button } from '@mui/material';
+import Users from '../Users';
 import UsersList from './UsersList';
 import User from './User';
+import logo from '../logo.png';
 
+// style
+import * as S from './style';
+
+/**
+ * Component
+ */
 const Dashboard = () => {
   const socket = useSocket();
   const auth = useAuth();
@@ -45,12 +61,10 @@ const Dashboard = () => {
   }, [socket.socket]);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: 'center', bgcolor: 'grey.800' }}>
-      <Box sx={{ display: 'flex', justifyContent: "center", alignItems: 'flex-start', bgcolor: 'grey.800', padding: '50px 0' }}>
-        <UsersList />
-        <User />
-      </Box>
-    </Box>
+    <S.Container>
+      <Menu logoUrl={logo} items={[{ href: '/', icon: 'Dashboard', label: 'Dashboard' }]} user={{ firstname: auth.user.username, lastname: '' }} settingsUrl={{ href: '/settings' }} onDisconnect={auth.signout} />
+      <Users />
+    </S.Container>
   )
 }
 
