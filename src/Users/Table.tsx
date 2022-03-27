@@ -372,7 +372,7 @@ const UsersTable = ({ data }: any) => {
             <S.TableHeader>
                 <S.Filters>
                     <S.FilterSelect>
-                        <Tooltip content={"Filtrer par poste"}>
+                        <Tooltip content={"Filtrer par badge"}>
                             {/* @ts-ignore */}
                             <Select onChange={handleSelect} value={jobFilter} options={[{ label: 'Tous', value: 'all' }, { label: 'Sans badge', value: 'Without' }, ...badges.badges.map((badge: any) => ({ label: badge.label, value: badge._id }))]} />
                         </Tooltip>
