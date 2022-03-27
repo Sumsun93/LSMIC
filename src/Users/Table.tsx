@@ -218,6 +218,9 @@ const UsersTable = ({ data }: any) => {
                 accessor: 'badges',
                 filter: (rows, ids, filterValue) => {
                     if (filterValue === 'all') return rows;
+                    if (filterValue === 'Without') {
+                        return rows.filter((row) => !row.values.badges?.length);
+                    }
                     return rows.filter((row) => row.values.badges?.find((badge: string) => badge === filterValue)) || [];
                 },
                 Cell: ({ row }) => (
@@ -371,7 +374,7 @@ const UsersTable = ({ data }: any) => {
                     <S.FilterSelect>
                         <Tooltip content={"Filtrer par poste"}>
                             {/* @ts-ignore */}
-                            <Select onChange={handleSelect} value={jobFilter} options={[{ label: 'Tous', value: 'all' }, ...badges.badges.map((badge: any) => ({ label: badge.label, value: badge._id }))]} />
+                            <Select onChange={handleSelect} value={jobFilter} options={[{ label: 'Tous', value: 'all' }, { label: 'Sans badge', value: 'Without' }, ...badges.badges.map((badge: any) => ({ label: badge.label, value: badge._id }))]} />
                         </Tooltip>
                     </S.FilterSelect>
                     <S.FilterButtons>
@@ -395,6 +398,7 @@ const UsersTable = ({ data }: any) => {
                     {auth.user.isAdmin && <Button variant={"text"} onClick={() => setDeleteBadge(true)}>Supprimer un badge</Button>}
                 </S.Filters>
                 <S.InputContainer>
+                    <S.NumberOfUsers>{tableInstance.rows.filter(row => row.values.isAvailable).length}/{tableInstance.rows.length} disponible{tableInstance.rows.filter(row => row.values.isAvailable).length > 1 && 's'}</S.NumberOfUsers>
                     <InputField type={"text"} placeholder={"Recherche"} value={tableInstance.state.globalFilter} onChange={handleChangeSearch} />
                 </S.InputContainer>
             </S.TableHeader>

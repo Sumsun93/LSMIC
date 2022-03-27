@@ -118,6 +118,10 @@ export const TableContent = styled.div`
 export const Filters = styled.div`
     display: flex;
     align-items: center;
+  
+    >button {
+      margin-right: .5rem;
+    }
 `;
 
 export const FilterSelect = styled.div`
@@ -150,8 +154,19 @@ export const FilterButton: FC<FilterButtonProps> = styled.button(({ theme, isLas
 }));
 
 export const InputContainer = styled.div`
-  width: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
+
+export const NumberOfUsers = styled.div(({ theme }) => ({
+    ...theme.typo.labels.label,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '13rem',
+    marginRight: '1rem',
+}));
 
 export const TableActions = styled.div`
   display: flex;

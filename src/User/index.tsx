@@ -56,6 +56,8 @@ const User = () => {
         setBank(auth.user.bank);
     }
 
+    const disabled = auth.user.username === username && auth.user.phone === phone && auth.user.bank === bank;
+
     return (
         <S.Container>
             <S.Header>
@@ -71,8 +73,8 @@ const User = () => {
                     <InputField placeholder={"555-XXXXXX"} label={"Numéro de téléphone"} type={"text"} onChange={(evt) => setPhone(evt.target.value)} value={phone} />
                     <InputField placeholder={"XXX-XXXXXX-XX"} label={"Numéro de compte bancaire"} type={"text"} onChange={(evt) => setBank(evt.target.value)} value={bank} />
                     <S.Buttons>
-                        <Button onClick={handleSave}>Enregistrer</Button>
-                        <Button onClick={handleSave} variant="text">Réinitialiser</Button>
+                        <Button onClick={handleSave} disabled={disabled}>Enregistrer</Button>
+                        <Button onClick={handleSave} disabled={disabled} variant="text">Réinitialiser</Button>
                     </S.Buttons>
                 </S.CardContent>
             </Card>
