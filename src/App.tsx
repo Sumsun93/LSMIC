@@ -1,7 +1,14 @@
+/**
+ * Package import
+ */
 import React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Routes, Route } from "react-router-dom";
-import './App.css';
+import {Icon, Tooltip, } from '@oclock/crumble';
+
+/**
+ * Local import
+ */
+import { ThemeProvider } from './contexts/ThemeProvider';
 import Login from './Login';
 import Dashboard from './Dashboard';
 import Header from './Header';
@@ -9,23 +16,24 @@ import AuthProvider from './contexts/AuthProvider';
 import RequireAuth from './RequiredAuth';
 import SocketProvider from './contexts/SocketProvider';
 import UsersProvider from './contexts/UsersProvider';
-import {AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
+import BadgesProvider from './contexts/BadgesProvider';
+import themes from './theme/themes';
 
+// style
+import * as S from './style';
+import '@oclock/crumble/dist/css/styles.css';
 
+/**
+ * Component
+ */
+// @ts-ignore
 function App() {
-    const darkTheme = createTheme({
-        palette: {
-            mode: 'dark',
-        },
-    });
-
     return (
-        <ThemeProvider theme={darkTheme}>
+        <ThemeProvider>
             <AuthProvider>
                 <SocketProvider>
                     <UsersProvider>
-                        <Box className="App" sx={{ bgcolor: 'background.default', }}>
-                            <Header />
+                        <BadgesProvider>
                             <Routes>
                                 <Route path="/login" element={<Login />} />
                                 <Route path="/" element={(
@@ -34,8 +42,19 @@ function App() {
                                     </RequireAuth>
                                 )} />
                             </Routes>
-                            <div style={{ color: 'grey', marginTop: '10px' }}>v1.1.0</div>
-                        </Box>
+                            <S.Version>
+                                v2.0.0 | Developpé par
+                                <Tooltip content={(
+                                    <S.TooltipContent>
+                                        Je développe des trucs des fois, en ReactJS et NodeJS.
+                                        <Icon name={"React"} size={"2rem"} />
+                                        <Icon name={"JavaScript"} size={"2rem"} />
+                                    </S.TooltipContent>
+                                )}>
+                                    <a target={"_blank"} href={"https://github.com/Sumsun93"}>Sumsunnn</a>
+                                </Tooltip>
+                            </S.Version>
+                        </BadgesProvider>
                     </UsersProvider>
                 </SocketProvider>
             </AuthProvider>

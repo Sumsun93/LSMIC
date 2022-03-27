@@ -1,17 +1,30 @@
-import React, { useEffect, useState } from 'react';
+/**
+ * Package import
+ */
+import React, { useEffect } from 'react';
+import { Menu } from '@oclock/crumble';
+
+/**
+ * Local import
+ */
 import { useAuth } from '../contexts/AuthProvider';
 import { useSocket } from '../contexts/SocketProvider';
 import { useUsers } from '../contexts/UsersProvider';
-import {Box, Button } from '@mui/material';
-import UsersList from './UsersList';
-import User from './User';
+import { useBadges } from '../contexts/BadgesProvider';
+import Users from '../Users';
+import logo from '../logo.png';
 
+// style
+import * as S from './style';
+
+/**
+ * Component
+ */
 const Dashboard = () => {
   const socket = useSocket();
   const auth = useAuth();
   const users = useUsers();
-
-  const [isAvailable, setIsAvailable] = useState(auth.user.isAvailable);
+  const badges = useBadges();
 
   useEffect(() => {
     socket.connect(auth.user.token);
@@ -28,6 +41,10 @@ const Dashboard = () => {
         }
       })
 
+      socket.on('getAllBadges', (allBadges) => {
+        badges.setNewBadges(allBadges);
+      })
+
       socket.on('updateOtherUser', (data) => {
         users.updateUser(data);
       })
@@ -40,17 +57,24 @@ const Dashboard = () => {
         auth.signout();
       })
 
+      socket.on('newBadge', (newBadge) => {
+        badges.addBadge(newBadge);
+      })
+
+      socket.on('deleteBadge', (badgeId) => {
+        badges.deleteBadge(badgeId);
+      })
+
       socket.emit('getAllUsers');
+      socket.emit('getAllBadges');
     }
   }, [socket.socket]);
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: "column", justifyContent: "center", alignItems: 'center', bgcolor: 'grey.800' }}>
-      <Box sx={{ display: 'flex', justifyContent: "center", alignItems: 'flex-start', bgcolor: 'grey.800', padding: '50px 0' }}>
-        <UsersList />
-        <User />
-      </Box>
-    </Box>
+    <S.Container>
+      <Menu logoUrl={logo} items={[{ href: '/', icon: 'Dashboard', label: 'Dashboard' }]} user={{ firstname: auth.user.username, lastname: '' }} onDisconnect={auth.signout} />
+      <Users />
+    </S.Container>
   )
 }
 

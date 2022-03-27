@@ -63,10 +63,11 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const updateUser = (data: object) => {
-    setUser({
-      ...user,
+    console.log(data, user);
+    setUser((prevUser: any) => ({
+      ...prevUser,
       ...data,
-    })
+    }));
   }
 
   const signout = () => {

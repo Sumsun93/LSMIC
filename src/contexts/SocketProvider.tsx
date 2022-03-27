@@ -21,7 +21,7 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
 
   let emit = (eventName: string, data = {}) => {
     socket?.emit(eventName, data)
-  }
+  };
 
   let on = (eventName: string, callback: (...args: any[]) => void) => {
     socket?.on(eventName, callback);
