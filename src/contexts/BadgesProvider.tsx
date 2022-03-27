@@ -2,56 +2,51 @@ import React, { createContext, ReactNode, useState, useContext, useCallback } fr
 import io, { Socket } from 'socket.io-client';
 import * as events from "events";
 
-interface UsersContextType {
-  setNewUsers: (newUsers: any[]) => void,
-  users?: any[],
-  addUser: (newUser: any) => void,
-  updateUser: ({ userId, newData, deleted }: { userId: string, newData: object, deleted: true }) => void,
+interface BadgesContextType {
+  setNewBadges: (newBadges: any[]) => void,
+  badges?: any[],
+  addBadge: (newBadge: any) => void,
+  findBadge: (badgeId: string) => any,
+  deleteBadge: (badgeId: string) =>void,
 }
 
-let UsersContext = createContext<UsersContextType>(null!);
+let BadgesContext = createContext<BadgesContextType>(null!);
 
-const UsersProvider = ({ children }: { children: ReactNode }) => {
-  const [users, setUsers] = useState<any[]>([]);
+const BadgesProvider = ({ children }: { children: ReactNode }) => {
+  const [badges, setBadges] = useState<any[]>([]);
 
-  const setNewUsers = (newUsers: any[]) => {
-    setUsers(newUsers);
+  const setNewBadges = (newBadges: any[]) => {
+    setBadges(newBadges);
   };
 
-  const addUser = (newUser: any) => {
-    setUsers(prevUsers => {
-      const newUsers = prevUsers;
-      if (!prevUsers.find(usr => usr.id === newUser.id)) {
-        newUsers.push(newUser);
+  const addBadge = (newBadge: any) => {
+    setBadges(prevBadges => {
+      const newBadges = prevBadges;
+      if (!prevBadges.find(badge => badge._id === newBadge.id)) {
+        newBadges.push(newBadge);
       }
-      return newUsers
+      return newBadges
     });
   };
 
-  const updateUser = ({ userId, newData, deleted }: { userId: string, newData: object, deleted: boolean }) => {
-    if (deleted) {
-      setUsers((prevUsers => prevUsers?.filter(usr => usr.id !== userId) || []))
-    }
-    else {
-      setUsers(prevUsers => prevUsers?.map(usr => {
-        if (usr.id === userId) {
-          return {
-            ...usr,
-            ...newData,
-          };
-        }
-        return usr;
-      }) || []);
-    }
-  };
+  const deleteBadge = (badgeId: string) => {
+    setBadges(prevBadges => prevBadges.filter((badge: any) => badge._id !== badgeId));
+  }
 
-  let value = { setNewUsers, users, updateUser, addUser };
+  const findBadge = useCallback(
+      (badgeId: string) => {
+        return badges?.find((badge: any) => badge._id === badgeId);
+      },
+      [badges],
+  );
 
-  return <UsersContext.Provider value={value}>{children}</UsersContext.Provider>;
+  let value = { setNewBadges, badges, addBadge, findBadge, deleteBadge };
+
+  return <BadgesContext.Provider value={value}>{children}</BadgesContext.Provider>;
 }
 
-export const useUsers = () => {
-  return useContext(UsersContext);
+export const useBadges = () => {
+  return useContext(BadgesContext);
 }
 
-export default UsersProvider;
+export default BadgesProvider;

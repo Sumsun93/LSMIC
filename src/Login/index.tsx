@@ -99,14 +99,14 @@ const Login = () => {
     return (
         <S.Container>
           <S.Logo src={logo} />
-          <S.Form>
+          <S.Form onSubmit={handleSignIn}>
             <S.Title>Connexion</S.Title>
             <S.Inputs>
               <InputField placeholder={"Martine Hawley"} label={"Prénom Nom"} type={"text"} onChange={handleChange('username')} value={signInData.username} />
               <InputField placeholder={"**********"} label={"Mot de passe"} type={"password"} onChange={handleChange('password')} value={signInData.password} />
             </S.Inputs>
             <S.Buttons>
-              <Button onClick={handleSignIn}>Se connecter</Button>
+              <Button type={"submit"} onClick={handleSignIn}>Se connecter</Button>
               <Button onClick={() => setLogin(false)} variant={"text"}>S'inscrire</Button>
             </S.Buttons>
           </S.Form>

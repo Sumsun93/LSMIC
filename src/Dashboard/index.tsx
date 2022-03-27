@@ -1,8 +1,7 @@
 /**
  * Package import
  */
-import React, { useEffect, useState } from 'react';
-import {Box, Button } from '@mui/material';
+import React, { useEffect } from 'react';
 import { Menu } from '@oclock/crumble';
 
 /**
@@ -11,9 +10,8 @@ import { Menu } from '@oclock/crumble';
 import { useAuth } from '../contexts/AuthProvider';
 import { useSocket } from '../contexts/SocketProvider';
 import { useUsers } from '../contexts/UsersProvider';
+import { useBadges } from '../contexts/BadgesProvider';
 import Users from '../Users';
-import UsersList from './UsersList';
-import User from './User';
 import logo from '../logo.png';
 
 // style
@@ -26,8 +24,7 @@ const Dashboard = () => {
   const socket = useSocket();
   const auth = useAuth();
   const users = useUsers();
-
-  const [isAvailable, setIsAvailable] = useState(auth.user.isAvailable);
+  const badges = useBadges();
 
   useEffect(() => {
     socket.connect(auth.user.token);
@@ -44,6 +41,10 @@ const Dashboard = () => {
         }
       })
 
+      socket.on('getAllBadges', (allBadges) => {
+        badges.setNewBadges(allBadges);
+      })
+
       socket.on('updateOtherUser', (data) => {
         users.updateUser(data);
       })
@@ -56,13 +57,22 @@ const Dashboard = () => {
         auth.signout();
       })
 
+      socket.on('newBadge', (newBadge) => {
+        badges.addBadge(newBadge);
+      })
+
+      socket.on('deleteBadge', (badgeId) => {
+        badges.deleteBadge(badgeId);
+      })
+
       socket.emit('getAllUsers');
+      socket.emit('getAllBadges');
     }
   }, [socket.socket]);
 
   return (
     <S.Container>
-      <Menu logoUrl={logo} items={[{ href: '/', icon: 'Dashboard', label: 'Dashboard' }]} user={{ firstname: auth.user.username, lastname: '' }} settingsUrl={{ href: '/settings' }} onDisconnect={auth.signout} />
+      <Menu logoUrl={logo} items={[{ href: '/', icon: 'Dashboard', label: 'Dashboard' }]} user={{ firstname: auth.user.username, lastname: '' }} onDisconnect={auth.signout} />
       <Users />
     </S.Container>
   )

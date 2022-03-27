@@ -55,8 +55,5 @@ export const Title = styled.h1`
     width: fit-content;
     margin: 0 auto;
     padding: 0 .3em;
-    color: ${({ theme }) => {
-        console.log(theme);
-        return theme.text._1;
-    }};
+    color: ${({ theme }) => theme.text._1};
 `;
