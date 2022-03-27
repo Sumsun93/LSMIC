@@ -95,7 +95,7 @@ export const TableContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: calc(100% - (600px - 2rem));
+  width: calc(100% - (400px - 2rem));
   height: 100%;
   box-sizing: border-box;
 `;

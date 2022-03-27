@@ -7,7 +7,7 @@ import styled from '@emotion/styled';
  * Styled component
  */
 export const Container = styled.div`
-  width: 600px;
+  width: 400px;
   box-sizing: border-box;
   margin-left: 2rem;
 
