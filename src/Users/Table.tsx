@@ -3,7 +3,7 @@
  */
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import { Column, useTable, useGlobalFilter, useSortBy, useFilters } from 'react-table';
-import { Table, Chips, InputField, Icon, Button, Tooltip, Dialog, Select } from '@oclock/crumble';
+import { Table, Chips, InputField, Icon, Button, Tooltip, Dialog, Select, TextareaField } from '@oclock/crumble';
 
 /**
  * Local import
@@ -89,6 +89,9 @@ const UsersTable = ({ data }: any) => {
     const users = useUsers();
 
     const [modal, setModal] = useState<ModalState | null>(null);
+
+    const [noteModal, setNoteModal] = useState<string | null>(null);
+    const [noteInput, setNoteInput] = useState('');
 
     const [createBadge, setCreateBadge] = useState(false);
     const [createBadgeLabel, setCreateBadgeLabel] = useState('');
@@ -210,7 +213,7 @@ const UsersTable = ({ data }: any) => {
                 accessor: 'isAdmin',
                 id: 'job',
             },
-            { Header: 'Prénom Nom', accessor: 'username' },
+            { Header: 'Prénom Nom', accessor: 'username', Cell: ({ row }) => <>{row.values.username}{auth.user.isAdmin && row.original.note && <Tooltip content={row.original.note}><Icon name={"Notes"} /></Tooltip>}</> },
             { Header: 'Numéro de téléphone', accessor: 'phone', Cell: ({ row }) => (auth.user.isAdmin || row.original.isAdmin) ? <S.CopyButton onClick={handleCopy(row.original.phone)}>{row.original.phone} <Icon name={"Copy"} /></S.CopyButton> : 'Caché' },
             { Header: 'Compte bancaire', accessor: 'bank', id: 'bank', Cell: ({ row }) => <S.CopyButton onClick={handleCopy(row.original.bank)}>{row.original.bank} <Icon name={"Copy"} /></S.CopyButton>},
             {
@@ -239,6 +242,9 @@ const UsersTable = ({ data }: any) => {
                         </Tooltip>
                         <Tooltip content={!row.original.isAdmin ? "Mettre admin" : "Retirer admin"}>
                             <Button icon={row.original.isAdmin ? 'ArrowDown' : 'ArrowUp'} variant={"outlined"} onClick={handleClickAction('admin', row)} />
+                        </Tooltip>
+                        <Tooltip content={"Ajouter/modifier une note"}>
+                            <Button icon={"Edit"} variant={"outlined"} onClick={() => { setNoteModal(row.original.id); setNoteInput(row.original.note || '') }} />
                         </Tooltip>
                         <Tooltip content={"Supprimer le compte"}>
                             <Button icon={"TrashAlt"} variant={"outlined"} onClick={handleClickAction('delete', row)} />
@@ -325,6 +331,14 @@ const UsersTable = ({ data }: any) => {
         }
     }
 
+    const handleNote = () => {
+        socket.emit('updateOtherUser', {
+            id: noteModal,
+            newData: { note: noteInput },
+        });
+        setNoteModal(null);
+    }
+
     const activeFilterValue = tableInstance.state.filters.find((filter: any) => filter.id === 'job')?.value || 'all';
     const availableFilterValue = tableInstance.state.filters.find((filter: any) => filter.id === 'isAvailable')?.value || 'all';
 
@@ -337,6 +351,15 @@ const UsersTable = ({ data }: any) => {
                     cancelButtonProps={dataModal[modal.context].cancelButton}
                     successButtonProps={dataModal[modal.context].successButton}
                 />
+            )}
+            {noteModal && (
+                <Dialog
+                    title={"Ecrire une note"}
+                    cancelButtonProps={{ label: 'Annuler', onClick: () => setNoteModal(null) }}
+                    successButtonProps={{ label: 'Enregistrer', onClick: handleNote }}
+                >
+                    <TextareaField onChange={(evt) => setNoteInput(evt.target.value)} value={noteInput} />
+                </Dialog>
             )}
             {addBadge && (
                 <Dialog
