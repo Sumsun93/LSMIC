@@ -9,6 +9,7 @@ import { Card, Avatar, InputField, Button } from '@oclock/crumble';
  */
 import { useAuth } from '../contexts/AuthProvider';
 import { useSocket } from '../contexts/SocketProvider';
+import wizz from './wizz.mp3';
 
 // style
 import * as S from './style';
@@ -19,6 +20,10 @@ import * as S from './style';
 const User = () => {
     const auth = useAuth();
     const socket = useSocket();
+    let steeveInterval: NodeJS.Timer;
+    const audio = new Audio(wizz);
+
+    const [steeveMode, setSteeveMode] = useState<NodeJS.Timer | null>(null);
 
     const [username, setUsername] = useState(auth.user.username);
     const [phone, setPhone] = useState(auth.user.phone);
@@ -35,6 +40,7 @@ const User = () => {
             auth.changeIsAvailable(state);
         });
     }, [socket.socket]);
+
 
     const handleClick = () => {
         socket.emit('available', { username: auth.user.username, state: !auth.user.isAvailable });
@@ -56,6 +62,17 @@ const User = () => {
         setBank(auth.user.bank);
     }
 
+    const handleSteeveMode = () => {
+        if (!steeveMode) {
+            setSteeveMode(setInterval(() => {
+                audio.play();
+            }, 1.8e+6));
+        } else {
+            clearInterval(steeveMode);
+            setSteeveMode(null);
+        }
+    }
+
     const disabled = auth.user.username === username && auth.user.phone === phone && auth.user.bank === bank;
 
     return (
@@ -63,6 +80,9 @@ const User = () => {
             <S.Header>
                 <Button icon={auth.user.isAvailable ? 'Bed' : 'Constructor'} variant={auth.user.isAvailable ? 'danger' : 'primary'} size="xlarge" onClick={handleClick}>
                     {!auth.user.isAvailable ? 'Se rendre disponible' : 'Se rendre indisponible'}
+                </Button>
+                <Button variant={"text"} icon={steeveMode ? "BellSlash" : "Bell"} size="small" onClick={handleSteeveMode}>
+                    {!steeveMode ? 'Activer le mode Steeve' : 'Désactiver le mode Steeve'}
                 </Button>
             </S.Header>
             <Card>

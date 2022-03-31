@@ -21,8 +21,12 @@ export const Header = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3rem;
+  flex-direction: column;
   margin-bottom: 1rem;
+  
+  button {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const CardContent = styled.div`

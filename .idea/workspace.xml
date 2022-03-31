@@ -1,25 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Update version">
-      <change afterPath="$PROJECT_DIR$/src/User/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/User/style.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/contexts/BadgesProvider.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/style.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/types/react-table-config.d.ts" afterDir="false" />
+    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Add note">
+      <change afterPath="$PROJECT_DIR$/src/User/wizz.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/types/audio.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/Missions.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/User.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/UsersList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/style.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/style.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/AuthProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthProvider.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/SocketProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/SocketProvider.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/User/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/style.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,9 +14,22 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="main" />
+        <entry key="$PROJECT_DIR$" value="reword_design" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,12 +52,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="reword_design" />
-                    <option name="lastUsedInstant" value="1647809368" />
+                    <option name="branchName" value="main" />
+                    <option name="lastUsedInstant" value="1648398597" />
                   </RecentBranch>
                   <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1647809367" />
+                    <option name="branchName" value="reword_design" />
+                    <option name="lastUsedInstant" value="1647809368" />
                   </RecentBranch>
                 </list>
               </option>
@@ -81,7 +81,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/contexts" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/Dashboard" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -92,13 +92,14 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Dashboard" />
       <recent name="$PROJECT_DIR$/src/contexts" />
       <recent name="$PROJECT_DIR$/types" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src" />
-      <recent name="$PROJECT_DIR$/public" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/User" />
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/contexts" />
     </key>
@@ -134,6 +135,8 @@
       <workItem from="1648330108750" duration="2808000" />
       <workItem from="1648369608356" duration="7000" />
       <workItem from="1648369921703" duration="10734000" />
+      <workItem from="1648455848861" duration="23000" />
+      <workItem from="1648755612398" duration="2631000" />
     </task>
     <task id="LOCAL-00001" summary="Change server url">
       <created>1647130887893</created>
@@ -198,7 +201,28 @@
       <option name="project" value="LOCAL" />
       <updated>1647592388607</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Add without filter + number of connected users">
+      <created>1648398666541</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1648398666541</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Change word + update version">
+      <created>1648398948722</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1648398948722</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add note">
+      <created>1648400029884</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1648400029884</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,6 +249,9 @@
     <MESSAGE value="Add version" />
     <MESSAGE value="Fix disconnect + user not found socket init" />
     <MESSAGE value="Change version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change version" />
+    <MESSAGE value="Add without filter + number of connected users" />
+    <MESSAGE value="Change word + update version" />
+    <MESSAGE value="Add note" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add note" />
   </component>
 </project>
