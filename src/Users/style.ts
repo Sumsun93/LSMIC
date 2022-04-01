@@ -164,7 +164,7 @@ export const NumberOfUsers = styled.div(({ theme }) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    width: '13rem',
+    width: '20rem',
     marginRight: '1rem',
 }));
 

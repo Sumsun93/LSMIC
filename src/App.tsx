@@ -43,7 +43,7 @@ function App() {
                                 )} />
                             </Routes>
                             <S.Version>
-                                v2.2.0 | Developpé par
+                                v2.2.1 | Developpé par
                                 <Tooltip content={(
                                     <S.TooltipContent>
                                         Je développe des trucs des fois, en ReactJS et NodeJS.

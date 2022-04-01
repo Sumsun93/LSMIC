@@ -421,7 +421,7 @@ const UsersTable = ({ data }: any) => {
                     {auth.user.isAdmin && <Button variant={"text"} onClick={() => setDeleteBadge(true)}>Supprimer un badge</Button>}
                 </S.Filters>
                 <S.InputContainer>
-                    <S.NumberOfUsers>{tableInstance.rows.filter(row => row.values.isAvailable).length}/{tableInstance.rows.length} disponible{tableInstance.rows.filter(row => row.values.isAvailable).length > 1 && 's'}</S.NumberOfUsers>
+                    <S.NumberOfUsers>{tableInstance.rows.filter(row => row.values.isAvailable).length}/{tableInstance.rows.length} verge disponible{tableInstance.rows.filter(row => row.values.isAvailable).length > 1 && 's'}</S.NumberOfUsers>
                     <InputField type={"text"} placeholder={"Recherche"} value={tableInstance.state.globalFilter} onChange={handleChangeSearch} />
                 </S.InputContainer>
             </S.TableHeader>

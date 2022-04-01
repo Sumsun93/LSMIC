@@ -1,7 +1,7 @@
 /**
  * Package import
  */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Menu } from '@oclock/crumble';
 
 /**
@@ -25,6 +25,8 @@ const Dashboard = () => {
   const auth = useAuth();
   const users = useUsers();
   const badges = useBadges();
+
+  const [enabled, setEnabled] = useState(true);
 
   useEffect(() => {
     socket.connect(auth.user.token);
@@ -71,9 +73,10 @@ const Dashboard = () => {
   }, [socket.socket]);
 
   return (
-    <S.Container>
+    <S.Container isAvailable={auth.user.isAvailable && enabled}>
       <Menu logoUrl={logo} items={[{ href: '/', icon: 'Dashboard', label: 'Dashboard' }]} user={{ firstname: auth.user.username, lastname: '' }} onDisconnect={auth.signout} />
       <Users />
+      <S.DisableApril onClick={() => setEnabled(!enabled)}>{enabled ? 'Désactiver le 1er avril' : 'Activer le 1er avril'}</S.DisableApril>
     </S.Container>
   )
 }
