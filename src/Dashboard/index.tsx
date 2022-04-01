@@ -75,8 +75,8 @@ const Dashboard = () => {
   return (
     <S.Container isAvailable={auth.user.isAvailable && enabled}>
       <Menu logoUrl={logo} items={[{ href: '/', icon: 'Dashboard', label: 'Dashboard' }]} user={{ firstname: auth.user.username, lastname: '' }} onDisconnect={auth.signout} />
-      <Users />
-      <S.DisableApril onClick={() => setEnabled(!enabled)}>{enabled ? 'Désactiver le 1er avril' : 'Activer le 1er avril'}</S.DisableApril>
+      <Users trollMode={auth.user.isAvailable && enabled} />
+      <S.DisableApril enabled={auth.user.isAvailable && enabled} onClick={() => setEnabled(!enabled)}>{enabled ? 'Désactiver le 1er avril' : 'Activer le 1er avril'}</S.DisableApril>
     </S.Container>
   )
 }

@@ -17,13 +17,13 @@ import * as S from './style';
 /**
  * Component
  */
-const Users = () => {
+const Users = ({ trollMode }: { trollMode: boolean }) => {
     const users = useUsers();
 
     return (
         <S.Container>
             <S.Header>
-                <S.Title>Dashboard</S.Title>
+                <S.Title trollMode={trollMode}>{!trollMode ? 'Dashboard' : "Poisson d'avril !!!!"}</S.Title>
             </S.Header>
             <S.Content>
                 <Table data={users.users} />
