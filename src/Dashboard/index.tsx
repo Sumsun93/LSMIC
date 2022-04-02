@@ -26,8 +26,6 @@ const Dashboard = () => {
   const users = useUsers();
   const badges = useBadges();
 
-  const [enabled, setEnabled] = useState(true);
-
   useEffect(() => {
     socket.connect(auth.user.token);
   }, []);
@@ -73,10 +71,9 @@ const Dashboard = () => {
   }, [socket.socket]);
 
   return (
-    <S.Container isAvailable={auth.user.isAvailable && enabled}>
+    <S.Container>
       <Menu logoUrl={logo} items={[{ href: '/', icon: 'Dashboard', label: 'Dashboard' }]} user={{ firstname: auth.user.username, lastname: '' }} onDisconnect={auth.signout} />
-      <Users trollMode={auth.user.isAvailable && enabled} />
-      <S.DisableApril enabled={auth.user.isAvailable && enabled} onClick={() => setEnabled(!enabled)}>{enabled ? 'Désactiver le 1er avril' : 'Activer le 1er avril'}</S.DisableApril>
+      <Users />
     </S.Container>
   )
 }

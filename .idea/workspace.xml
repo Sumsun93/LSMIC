@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Troll version">
+    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="TrollMode">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/index.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Dashboard/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/style.ts" afterDir="false" />
@@ -138,7 +138,7 @@
       <workItem from="1648455848861" duration="23000" />
       <workItem from="1648755612398" duration="3324000" />
       <workItem from="1648799683915" duration="28000" />
-      <workItem from="1648807682329" duration="1625000" />
+      <workItem from="1648807682329" duration="3100000" />
     </task>
     <task id="LOCAL-00001" summary="Change server url">
       <created>1647130887893</created>
@@ -245,7 +245,14 @@
       <option name="project" value="LOCAL" />
       <updated>1648808703194</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="TrollMode">
+      <created>1648809335206</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1648809335206</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +284,7 @@
     <MESSAGE value="Add steeveMode" />
     <MESSAGE value="Change version" />
     <MESSAGE value="Troll version" />
-    <option name="LAST_COMMIT_MESSAGE" value="Troll version" />
+    <MESSAGE value="TrollMode" />
+    <option name="LAST_COMMIT_MESSAGE" value="TrollMode" />
   </component>
 </project>

@@ -24,37 +24,12 @@ export const Header = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.text._7};
 `;
 
-type TitleProps = {
-  trollMode: boolean;
-};
-
-const rainbow = keyframes`
-  0% {
-    color: #ff0000;
-  }
-  25% {
-    color: #ff7f00;
-  }
-  50% {
-    color: #ffff00;
-  }
-  75% {
-    color: #00ff00;
-  }
-  100% {
-    color: #0000ff;
-  }
-`;
-
-export const Title: FC<TitleProps> = styled.h1({
+export const Title = styled.h1({
   fontSize: '2rem',
   fontWeight: 'bold',
   alignSelf: 'center',
   marginLeft: '2rem',
-}, ({ trollMode }) => trollMode && ({
-    fontSize: '5rem',
-    animation: trollMode ? `${rainbow} 1s linear infinite` : 'none',
-}));
+});
 
 export const Content = styled.div`
   display: flex;
