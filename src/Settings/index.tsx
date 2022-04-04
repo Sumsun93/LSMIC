@@ -2,7 +2,6 @@
  * Package import
  */
 import React, { useEffect, useState } from 'react';
-import { TextareaField } from '@oclock/crumble';
 
 /**
  * Local import
@@ -12,21 +11,18 @@ import { useSocket } from '../contexts/SocketProvider';
 import { useUsers } from '../contexts/UsersProvider';
 import { useBadges } from '../contexts/BadgesProvider';
 import NavMenu from '../NavMenu';
-import Users from '../Users';
-import logo from '../logo.png';
+import User from '../User';
 
 // style
 import * as S from './style';
-import Header from '../Header';
 
 /**
  * Component
  */
 const Dashboard = () => {
-    return (
+  return (
     <S.Container>
-        <Header title="Dashboard" />
-        <Users />
+      <User />
     </S.Container>
   )
 }

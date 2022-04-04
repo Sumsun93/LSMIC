@@ -10,8 +10,8 @@ import { keyframes } from '@emotion/react';
  * Styled components
  */
 export const Container = styled.div`
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  text-align: initial;
   width: 100%;
-  height: 100vh;
 `;

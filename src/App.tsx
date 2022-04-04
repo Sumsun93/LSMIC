@@ -2,22 +2,18 @@
  * Package import
  */
 import React from 'react';
-import { Routes, Route } from "react-router-dom";
 import {Icon, Tooltip, } from '@oclock/crumble';
 
 /**
  * Local import
  */
 import { ThemeProvider } from './contexts/ThemeProvider';
-import Login from './Login';
-import Dashboard from './Dashboard';
-import Header from './Header';
+import Routes from './Routes';
 import AuthProvider from './contexts/AuthProvider';
 import RequireAuth from './RequiredAuth';
 import SocketProvider from './contexts/SocketProvider';
 import UsersProvider from './contexts/UsersProvider';
 import BadgesProvider from './contexts/BadgesProvider';
-import themes from './theme/themes';
 
 // style
 import * as S from './style';
@@ -34,14 +30,7 @@ function App() {
                 <SocketProvider>
                     <UsersProvider>
                         <BadgesProvider>
-                            <Routes>
-                                <Route path="/login" element={<Login />} />
-                                <Route path="/" element={(
-                                    <RequireAuth>
-                                        <Dashboard />
-                                    </RequireAuth>
-                                )} />
-                            </Routes>
+                            <Routes />
                             <S.Version>
                                 v2.2.1 | Developpé par
                                 <Tooltip content={(

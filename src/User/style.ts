@@ -7,9 +7,18 @@ import styled from '@emotion/styled';
  * Styled component
  */
 export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+`;
+
+export const Content = styled.div`
   width: 400px;
   box-sizing: border-box;
   margin-left: 2rem;
+  margin-top: 5rem;
 
   .crumble-card {
     background-color: ${({ theme }) => theme.background._3};

@@ -33,7 +33,13 @@ const defaultSignUpData = {
 /**
  * Component
  */
-const Login = () => {
+type LocationState = {
+  from: {
+    pathname: string;
+  }
+}
+
+const Login = (props: any) => {
   const auth = useAuth();
   const location = useLocation();
 
@@ -93,7 +99,9 @@ const Login = () => {
     }
   }
 
-  if (auth.user) return <Navigate to="/" state={{ from: location }} replace />;
+  const { from } = location.state as LocationState;
+
+  if (auth.user) return <Navigate to={from.pathname || '/'} state={{ from: location }} replace />;
 
   if (login) {
     return (

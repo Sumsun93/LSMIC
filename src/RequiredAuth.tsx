@@ -2,7 +2,7 @@ import React from 'react';
 import { useLocation, Navigate } from 'react-router-dom';
 import { useAuth } from './contexts/AuthProvider';
 
-const RequireAuth = ({ children }: { children: JSX.Element }) => {
+const RequireAuth = ({ children, isAdmin }: { children: JSX.Element, isAdmin?: boolean }) => {
   let auth = useAuth();
   let location = useLocation();
 
@@ -12,6 +12,10 @@ const RequireAuth = ({ children }: { children: JSX.Element }) => {
     // along to that page after they login, which is a nicer user experience
     // than dropping them off on the home page.
     return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  if (isAdmin && !auth.user.isAdmin) {
+    return <Navigate to="/" state={{ from: location }} replace />;
   }
 
   return children;

@@ -6,6 +6,11 @@ import styled from '@emotion/styled';
 /**
  * Local import
  */
+export const Container = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
 export const Version = styled.div`
   position: absolute;
   bottom: 10px;

@@ -93,13 +93,6 @@ const UsersTable = ({ data }: any) => {
     const [noteModal, setNoteModal] = useState<string | null>(null);
     const [noteInput, setNoteInput] = useState('');
 
-    const [createBadge, setCreateBadge] = useState(false);
-    const [createBadgeLabel, setCreateBadgeLabel] = useState('');
-    const [createBadgeColor, setCreateBadgeColor] = useState('');
-
-    const [deleteBadge, setDeleteBadge] = useState(false);
-    const [deleteBadgeSelect, setDeleteBadgeSelect] = useState('');
-
     const [removeBadge, setRemoveBadge] = useState<RemoveBadgeState | null>(null);
 
     const [addBadge, setAddBadge] = useState<{ badgeId: string, userId: string } | null>(null);
@@ -301,25 +294,6 @@ const UsersTable = ({ data }: any) => {
         setJobFilter(evt.target.value);
     }
 
-    const handleCreateBadge = () => {
-        socket.emit('createBadge', {
-            label: createBadgeLabel,
-            color: createBadgeColor,
-        });
-
-        setCreateBadge(false);
-        setCreateBadgeLabel('');
-        setCreateBadgeColor('');
-    }
-
-    const handleDeleteBadge = () => {
-        socket.emit('deleteBadge', {
-            badgeId: deleteBadgeSelect,
-        });
-        setDeleteBadge(false);
-        setDeleteBadgeSelect('');
-    }
-
     const handleAddBadge = () => {
         if (addBadge?.badgeId && addBadge.userId) {
             const user = users.users?.find(({ id }) => addBadge.userId === id);
@@ -373,25 +347,6 @@ const UsersTable = ({ data }: any) => {
                     }).map(badge => ({ label: badge.label, value: badge._id })) || []]} />
                 </Dialog>
             )}
-            {createBadge && (
-                <Dialog
-                    title="Créer un badge"
-                    cancelButtonProps={{ label: 'Annuler', onClick: () => setCreateBadge(false) }}
-                    successButtonProps={{ label: 'Créer', onClick: handleCreateBadge }}
-                >
-                    <InputField placeholder="Employé LSMIC" type="text" onChange={(evt) => setCreateBadgeLabel(evt.target.value)} label="Nom" value={createBadgeLabel} />
-                    <InputField type="color" onChange={(evt) => setCreateBadgeColor(evt.target.value)} label="Couleur" value={createBadgeColor} />
-                </Dialog>
-            )}
-            {deleteBadge && (
-                <Dialog
-                    title="Supprimer un badge"
-                    cancelButtonProps={{ label: 'Annuler', onClick: () => { setDeleteBadge(false); setDeleteBadgeSelect('') }}}
-                    successButtonProps={{ label: 'Supprimer', onClick: handleDeleteBadge }}
-                >
-                    <Select onChange={(evt => setDeleteBadgeSelect(evt.target.value))} value={deleteBadgeSelect} options={[{ label: 'Sélectionnez un badge', value: '' }, ...badges.badges?.map(badge => ({ label: badge.label, value: badge._id })) || []]} />
-                </Dialog>
-            )}
             <S.TableHeader>
                 <S.Filters>
                     <S.FilterSelect>
@@ -417,11 +372,9 @@ const UsersTable = ({ data }: any) => {
                             </S.FilterButton>
                         </Tooltip>
                     </S.FilterButtons>
-                    {auth.user.isAdmin && <Button onClick={() => setCreateBadge(true)}>Créer un badge</Button>}
-                    {auth.user.isAdmin && <Button variant={"text"} onClick={() => setDeleteBadge(true)}>Supprimer un badge</Button>}
                 </S.Filters>
                 <S.InputContainer>
-                    <S.NumberOfUsers>{tableInstance.rows.filter(row => row.values.isAvailable).length}/{tableInstance.rows.length} verge disponible{tableInstance.rows.filter(row => row.values.isAvailable).length > 1 && 's'}</S.NumberOfUsers>
+                    <S.NumberOfUsers>{tableInstance.rows.filter(row => row.values.isAvailable).length}/{tableInstance.rows.length} disponible{tableInstance.rows.filter(row => row.values.isAvailable).length > 1 && 's'}</S.NumberOfUsers>
                     <InputField type={"text"} placeholder={"Recherche"} value={tableInstance.state.globalFilter} onChange={handleChangeSearch} />
                 </S.InputContainer>
             </S.TableHeader>

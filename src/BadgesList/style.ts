@@ -10,38 +10,18 @@ import { keyframes } from '@emotion/react';
  */
 export const Container = styled.div`
   display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+`;
+
+export const Content = styled.div`
+  display: flex;
   align-items: flex-start;
   width: 100%;
   height: calc(100% - 7rem);
   max-height: calc(100% - 7rem);
   padding: 1rem 2rem 0;
-`;
-
-export const Infos: FC<{ theme?: any }> = styled.div`
-  height: 40rem;
-  padding: 1rem 2rem 0;
-  width: 30rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  
-  div {
-    height: 100%;
-  }
-  
-  textarea {
-    resize: none;
-    height: 100%;
-    font-size: 1.2rem;
-    
-    color: ${({ theme }) => theme.text._1} !important;
-  }
-`;
-
-export const InfosTitle = styled.h3`
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
 `;
 
 type ActiveProps = {
@@ -177,6 +157,7 @@ export const TableActions = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   
   button {
     margin: 0 .2rem;
