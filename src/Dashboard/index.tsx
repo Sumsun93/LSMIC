@@ -2,7 +2,7 @@
  * Package import
  */
 import React, { useEffect, useState } from 'react';
-import { TextareaField } from '@oclock/crumble';
+import {Icon, TextareaField } from '@oclock/crumble';
 
 /**
  * Local import
@@ -27,6 +27,10 @@ const Dashboard = () => {
     <S.Container>
         <Header title="Dashboard" />
         <Users />
+        <S.Alert>
+            <Icon name="ExclamationTriangle" size="1rem" />
+            La disponibilité n'est plus modifiée quand vous quittez la page. Merci de vous passer indisponible quand vous n'êtes plus disponible.
+        </S.Alert>
     </S.Container>
   )
 }

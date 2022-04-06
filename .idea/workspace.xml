@@ -4,6 +4,9 @@
     <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Update to v3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Dashboard/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Dashboard/style.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Users/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/style.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

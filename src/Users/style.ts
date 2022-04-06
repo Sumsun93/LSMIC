@@ -12,8 +12,8 @@ export const Container = styled.div`
   display: flex;
   align-items: flex-start;
   width: 100%;
-  height: calc(100% - 7rem);
-  max-height: calc(100% - 7rem);
+  height: calc(100% - 10rem);
+  max-height: calc(100% - 10rem);
   padding: 1rem 2rem 0;
 `;
 

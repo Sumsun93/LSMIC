@@ -32,7 +32,7 @@ function App() {
                         <BadgesProvider>
                             <Routes />
                             <S.Version>
-                                v3.0.0 | Developpé par
+                                v3.0.1 | Developpé par
                                 <Tooltip content={(
                                     <S.TooltipContent>
                                         Je développe des trucs des fois, en ReactJS et NodeJS.
