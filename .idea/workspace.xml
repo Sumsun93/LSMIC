@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Add alert message">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Login/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Login/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Routes.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Routes.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/User/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/User/index.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Users/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Table.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/contexts/AuthProvider.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/contexts/AuthProvider.tsx" afterDir="false" />
+    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Fix /login + add reset all button">
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +142,7 @@
       <workItem from="1649321010831" duration="26000" />
       <workItem from="1649343332334" duration="779000" />
       <workItem from="1649408593983" duration="481000" />
-      <workItem from="1649462363272" duration="2014000" />
+      <workItem from="1649462363272" duration="2224000" />
     </task>
     <task id="LOCAL-00001" summary="Change server url">
       <created>1647130887893</created>
@@ -282,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649285650498</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fix /login + add reset all button">
+      <created>1649464476557</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1649464476557</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -318,6 +320,7 @@
     <MESSAGE value="Remove trollMode" />
     <MESSAGE value="Update to v3" />
     <MESSAGE value="Add alert message" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add alert message" />
+    <MESSAGE value="Fix /login + add reset all button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix /login + add reset all button" />
   </component>
 </project>
