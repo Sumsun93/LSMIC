@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Fix /login + add reset all button">
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+    <list default="true" id="af3bb219-d36e-473f-9cbd-684a31dbca41" name="Changes" comment="Update version">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Users/Table.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/Table.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Users/style.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Users/style.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +144,8 @@
       <workItem from="1649321010831" duration="26000" />
       <workItem from="1649343332334" duration="779000" />
       <workItem from="1649408593983" duration="481000" />
-      <workItem from="1649462363272" duration="2224000" />
+      <workItem from="1649462363272" duration="3167000" />
+      <workItem from="1649529885319" duration="2248000" />
     </task>
     <task id="LOCAL-00001" summary="Change server url">
       <created>1647130887893</created>
@@ -284,7 +287,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649464476557</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Update version">
+      <created>1649464610279</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1649464610279</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -321,6 +331,7 @@
     <MESSAGE value="Update to v3" />
     <MESSAGE value="Add alert message" />
     <MESSAGE value="Fix /login + add reset all button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix /login + add reset all button" />
+    <MESSAGE value="Update version" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update version" />
   </component>
 </project>

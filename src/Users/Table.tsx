@@ -101,6 +101,14 @@ const UsersTable = ({ data }: any) => {
 
     const [resetAll, setResetAll] = useState(false);
 
+    const [multiCopy, setMultiCopy] = useState(false);
+    const [multiCopyData, setMultiCopyData] = useState({
+        badgeId: '',
+        name: false,
+        phone: false,
+        bank: false,
+    });
+
     const tableData = useMemo(() => data, [data]);
 
     const handleAvailable = useCallback(
@@ -318,6 +326,33 @@ const UsersTable = ({ data }: any) => {
         setResetAll(false);
     }
 
+    const handleMultiCopy = () => {
+        if (!multiCopyData.badgeId || (!multiCopyData.name && !multiCopyData.phone && !multiCopyData.bank)) return;
+
+        const badgeUsers = users.users?.filter(({ badges }) => badges.find((badgeId: string) => badgeId === multiCopyData.badgeId));
+
+        if (badgeUsers) {
+            let text = '';
+            badgeUsers.forEach(({ username, phone, bank }) => {
+                let userText = '';
+                if (multiCopyData.name) {
+                    userText += `${username} `;
+                }
+                if (multiCopyData.phone) {
+                    userText += `${phone} `;
+                }
+                if (multiCopyData.bank) {
+                    userText += `${bank}`;
+                }
+
+                text += `${userText.trim()}\n`;
+            });
+            navigator.clipboard.writeText(text);
+        }
+
+        setMultiCopy(false);
+    }
+
     const activeFilterValue = tableInstance.state.filters.find((filter: any) => filter.id === 'job')?.value || 'all';
     const availableFilterValue = tableInstance.state.filters.find((filter: any) => filter.id === 'isAvailable')?.value || 'all';
 
@@ -360,6 +395,22 @@ const UsersTable = ({ data }: any) => {
                     successButtonProps={{ label: 'Réinitialiser', onClick: handleReset }}
                 />
             )}
+            {multiCopy && (
+                <Dialog
+                    title="Copier plusieurs utilisateurs"
+                    desc="Copier tous les utilisateurs ayant le badge sélectionné"
+                    cancelButtonProps={{ label: 'Annuler', onClick: () => setMultiCopy(false) }}
+                    successButtonProps={{ label: 'Copier', onClick: handleMultiCopy }}
+                >
+                    <S.FormCopy>
+                        <Select onChange={(evt => setMultiCopyData((prev) => ({ ...prev, badgeId: evt.target.value })))} value={multiCopyData.badgeId} options={[{ label: 'Sélectionnez un badge', value: null }, ...badges.badges?.map(badge => ({ label: badge.label, value: badge._id })) || []]} />
+                        <S.MultiCopyText>Champs sélectionnés :</S.MultiCopyText>
+                        <Button onClick={() => setMultiCopyData((prev) => ({ ...prev, name: !prev.name }))} variant={multiCopyData.name ? 'primary' : 'outlined'}>Nom ({multiCopyData.name ? 'oui' : 'non'})</Button>
+                        <Button onClick={() => setMultiCopyData((prev) => ({ ...prev, phone: !prev.phone }))} variant={multiCopyData.phone ? 'primary' : 'outlined'}>Numéro de téléphone ({multiCopyData.phone ? 'oui' : 'non'})</Button>
+                        <Button onClick={() => setMultiCopyData((prev) => ({ ...prev, bank: !prev.bank }))} variant={multiCopyData.bank ? 'primary' : 'outlined'}>Compte bancaire ({multiCopyData.bank ? 'oui' : 'non'})</Button>
+                    </S.FormCopy>
+                </Dialog>
+            )}
             <S.TableHeader>
                 <S.Filters>
                     <S.FilterSelect>
@@ -386,6 +437,7 @@ const UsersTable = ({ data }: any) => {
                         </Tooltip>
                     </S.FilterButtons>
                     {auth.user.isAdmin && <Button onClick={() => setResetAll(true)} variant="danger">Reset dispo.</Button>}
+                    {auth.user.isAdmin && <Button onClick={() => setMultiCopy(true)} variant="primary">Copier en masse</Button>}
                 </S.Filters>
                 <S.InputContainer>
                     <S.NumberOfUsers>{tableInstance.rows.filter(row => row.values.isAvailable).length}/{tableInstance.rows.length} disponible{tableInstance.rows.filter(row => row.values.isAvailable).length > 1 && 's'}</S.NumberOfUsers>
@@ -398,5 +450,6 @@ const UsersTable = ({ data }: any) => {
         </S.TableContainer>
     )
 };
+
 
 export default UsersTable;

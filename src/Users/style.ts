@@ -209,3 +209,18 @@ export const CopyButton = styled.button(({ theme }) => ({
     justifyContent: 'flex-start',
     alignItems: 'center',
 }))
+
+export const FormCopy = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  button {
+    margin-top: .5rem;
+  }
+`;
+
+export const MultiCopyText = styled.p`
+  margin: 1rem 0;
+`;
