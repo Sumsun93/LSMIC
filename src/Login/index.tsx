@@ -99,9 +99,14 @@ const Login = (props: any) => {
     }
   }
 
-  const { from } = location.state as LocationState;
-
-  if (auth.user) return <Navigate to={from.pathname || '/'} state={{ from: location }} replace />;
+  if (location.state) {
+    const { from = { pathname: '/' } } = location.state as LocationState;
+    
+    if (auth.user) return <Navigate to={from.pathname || '/'} state={{ from: location }} replace />;
+  }
+  else {
+    if (auth.user) return <Navigate to={'/'} state={{ from: location }} replace />;
+  }
 
   if (login) {
     return (

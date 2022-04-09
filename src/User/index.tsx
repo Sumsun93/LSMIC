@@ -25,18 +25,6 @@ const User = () => {
     const [phone, setPhone] = useState(auth.user.phone);
     const [bank, setBank] = useState(auth.user.bank);
 
-    useEffect(() => {
-        socket.socket?.on('updateUser', (data) => {
-            auth.updateUser({
-                ...data
-            })
-        });
-
-        socket.socket?.on('available', (state) => {
-            auth.changeIsAvailable(state);
-        });
-    }, [socket.socket]);
-
     const handleSave = () => {
         socket.emit('updateUser', {
             username,

@@ -99,6 +99,8 @@ const UsersTable = ({ data }: any) => {
     const [jobFilter, setJobFilter] = useState('all');
     const [availableFilter, setAvailableFilter] = useState('all');
 
+    const [resetAll, setResetAll] = useState(false);
+
     const tableData = useMemo(() => data, [data]);
 
     const handleAvailable = useCallback(
@@ -118,7 +120,6 @@ const UsersTable = ({ data }: any) => {
             },
             successButton: {
                 onClick: () => {
-                    console.log(socket.socket, modal);
                     socket.emit('availableOther', {
                         id: modal?.row.original.id,
                         state: !modal?.row.original.isAvailable,
@@ -157,7 +158,6 @@ const UsersTable = ({ data }: any) => {
             },
             successButton: {
                 onClick: () => {
-                    console.log(modal?.row.original);
                     socket.emit('deleteUser', {
                         _id: modal?.row.original.id,
                     });
@@ -313,6 +313,11 @@ const UsersTable = ({ data }: any) => {
         setNoteModal(null);
     }
 
+    const handleReset = () => {
+        socket.emit('updateMultiUsers', { filter: { isAvailable: true }, newData: { isAvailable: false } });
+        setResetAll(false);
+    }
+
     const activeFilterValue = tableInstance.state.filters.find((filter: any) => filter.id === 'job')?.value || 'all';
     const availableFilterValue = tableInstance.state.filters.find((filter: any) => filter.id === 'isAvailable')?.value || 'all';
 
@@ -347,6 +352,14 @@ const UsersTable = ({ data }: any) => {
                     }).map(badge => ({ label: badge.label, value: badge._id })) || []]} />
                 </Dialog>
             )}
+            {resetAll && (
+                <Dialog
+                    title="Réinitialiser les disponibilités"
+                    desc="Êtes-vous sûr de vouloir réinitialiser les disponibilités de tous les utilisateurs ?"
+                    cancelButtonProps={{ label: 'Annuler', onClick: () => setResetAll(false) }}
+                    successButtonProps={{ label: 'Réinitialiser', onClick: handleReset }}
+                />
+            )}
             <S.TableHeader>
                 <S.Filters>
                     <S.FilterSelect>
@@ -372,6 +385,7 @@ const UsersTable = ({ data }: any) => {
                             </S.FilterButton>
                         </Tooltip>
                     </S.FilterButtons>
+                    {auth.user.isAdmin && <Button onClick={() => setResetAll(true)} variant="danger">Reset dispo.</Button>}
                 </S.Filters>
                 <S.InputContainer>
                     <S.NumberOfUsers>{tableInstance.rows.filter(row => row.values.isAvailable).length}/{tableInstance.rows.length} disponible{tableInstance.rows.filter(row => row.values.isAvailable).length > 1 && 's'}</S.NumberOfUsers>

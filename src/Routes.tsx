@@ -75,6 +75,16 @@ const Routes = () => {
                 auth.changeInfos(newInfos);
             })
 
+            socket.on('updateUser', (data) => {
+                auth.updateUser({
+                    ...data
+                });
+            })
+
+            socket.on('available', (state) => {
+                auth.changeIsAvailable(state);
+            })
+
             socket.emit('getAllUsers');
             socket.emit('getAllBadges');
             socket.emit('getLastInfos');
