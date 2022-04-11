@@ -8,7 +8,8 @@ import {Icon, Tooltip, } from '@oclock/crumble';
  * Local import
  */
 import { ThemeProvider } from './contexts/ThemeProvider';
-import Routes from './Routes';
+// import Routes from './Routes';
+import Closed from './Closed';
 import AuthProvider from './contexts/AuthProvider';
 import RequireAuth from './RequiredAuth';
 import SocketProvider from './contexts/SocketProvider';
@@ -30,7 +31,7 @@ function App() {
                 <SocketProvider>
                     <UsersProvider>
                         <BadgesProvider>
-                            <Routes />
+                            <Closed />
                             <S.Version>
                                 v3.2.0 | Developpé par
                                 <Tooltip content={(
