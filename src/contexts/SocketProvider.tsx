@@ -16,7 +16,7 @@ const SocketProvider = ({ children }: { children: ReactNode }) => {
 
   let connect = (token: string) => {
     // @ts-ignore
-    setSocket(io(process.env.REACT_APP_SERVER_API, { query: { token } }));
+    setSocket(io('wss://lsmic.onrender.com', { query: { token } }));
   };
 
   let emit = (eventName: string, data = {}) => {
