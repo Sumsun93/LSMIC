@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/LSMIC/static/css/main.d9dfb057.css",
+    "main.js": "/LSMIC/static/js/main.ab4e2b60.js",
+    "static/js/630.09f9c83c.chunk.js": "/LSMIC/static/js/630.09f9c83c.chunk.js",
+    "static/js/787.9b847157.chunk.js": "/LSMIC/static/js/787.9b847157.chunk.js",
+    "static/js/992.de33e3d8.chunk.js": "/LSMIC/static/js/992.de33e3d8.chunk.js",
+    "static/media/tenor.gif": "/LSMIC/static/media/tenor.2516e96038caf555f47b.gif",
+    "static/media/logo.png": "/LSMIC/static/media/logo.2279940d55d96af9d8b9.png",
+    "static/media/wizz.mp3": "/LSMIC/static/media/wizz.867abc393583440011dd.mp3",
+    "index.html": "/LSMIC/index.html",
+    "main.d9dfb057.css.map": "/LSMIC/static/css/main.d9dfb057.css.map",
+    "main.ab4e2b60.js.map": "/LSMIC/static/js/main.ab4e2b60.js.map",
+    "630.09f9c83c.chunk.js.map": "/LSMIC/static/js/630.09f9c83c.chunk.js.map",
+    "787.9b847157.chunk.js.map": "/LSMIC/static/js/787.9b847157.chunk.js.map",
+    "992.de33e3d8.chunk.js.map": "/LSMIC/static/js/992.de33e3d8.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d9dfb057.css",
+    "static/js/main.ab4e2b60.js"
+  ]
+}
